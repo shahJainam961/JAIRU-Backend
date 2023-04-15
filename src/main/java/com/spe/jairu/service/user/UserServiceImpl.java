@@ -11,9 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,6 +36,18 @@ public class UserServiceImpl implements UserService {
 
         return loginUser;
     }
+
+    public List<User> findAll() {
+        List<User> list = new ArrayList<>();
+        userRepository.findAll().iterator().forEachRemaining(list::add);
+        return list;
+    }
+
+    @Override
+    public User findOne(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 
     @Override
     public User saveUser(Map<String, String> payload) {
