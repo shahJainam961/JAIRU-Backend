@@ -13,7 +13,7 @@ public class NonFunctionalRequirement {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long nfrId;
 
     @Column
     private String requirement;

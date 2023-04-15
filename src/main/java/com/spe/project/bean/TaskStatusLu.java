@@ -13,8 +13,7 @@ public class TaskStatusLu {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-
+    private Long taskStatusLuId;
 
     @Column
     private String statusName;

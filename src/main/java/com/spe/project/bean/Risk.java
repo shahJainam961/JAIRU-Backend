@@ -11,7 +11,7 @@ public class Risk {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long riskId;
 
     @Column
     private String description;

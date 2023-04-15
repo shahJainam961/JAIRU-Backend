@@ -13,7 +13,7 @@ public class FunctionalRequirement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long frId;
 
     @Column
     private String requirement;

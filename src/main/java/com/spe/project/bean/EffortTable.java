@@ -18,7 +18,7 @@ import lombok.Setter;
 public class EffortTable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long effortTableId;
 
     @Column
     private Integer requirementAnalysisHours;

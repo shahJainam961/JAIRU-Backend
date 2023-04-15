@@ -15,7 +15,7 @@ import jakarta.persistence.*;
 public class Task {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long taskId;
 
     @Column
     private String taskName;
