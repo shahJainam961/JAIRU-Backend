@@ -4,6 +4,7 @@ import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getManagerData")
     public ResponseEntity<?> getAllManager()
     {
@@ -28,6 +30,7 @@ public class AdminController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getEmployeeData")
     public ResponseEntity<?> getAllEmployee()
     {
@@ -39,6 +42,7 @@ public class AdminController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deleteUser")
     public ResponseEntity<?> deleteUser(@RequestParam Map<String,String> param)
     {

@@ -12,7 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin("*")
@@ -28,16 +30,21 @@ public class UserController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> generateToken(@RequestBody Map<String,String> payload) throws AuthenticationException {
         try {
-            LoginUser loginUser = userService.generateToken(payload);
+            User user = userService.generateToken(payload);
             User userDetails = new User();
-            userDetails.setUsername(loginUser.getUsername());
-            final String token = jwtService.generateToken(userDetails);
+            userDetails.setUsername(user.getUsername());
+            List<String> rolesList= new ArrayList<>();
+            user.getRoles().forEach(role->{
+                rolesList.add(role.getName());
+            });
+            final String token = jwtService.generateToken(userDetails, rolesList);
             return ResponseEntity.ok(new AuthToken(token));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody Map<String,String> payload){
         try {
@@ -50,7 +57,7 @@ public class UserController {
     }
 
 
-    @PreAuthorize("hasRole('MANAGER')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     @RequestMapping(value="/managerping", method = RequestMethod.GET)
     public ResponseEntity<?> managerPing(){
         try {
@@ -62,7 +69,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value="/adminping", method = RequestMethod.GET)
     public ResponseEntity<?> adminPing(){
         try {
@@ -74,7 +81,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('EMPLOYEE')")
+    @PreAuthorize("hasAuthority('EMPLOYEE')")
     @RequestMapping(value="/employeeping", method = RequestMethod.GET)
     public ResponseEntity<?> employeePing(){
         try {

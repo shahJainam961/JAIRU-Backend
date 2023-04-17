@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    LoginUser generateToken(Map<String, String> payload);
+    User generateToken(Map<String, String> payload);
 
     UserModel saveUser(Map<String, String> payload);
 

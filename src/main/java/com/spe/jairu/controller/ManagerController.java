@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/addProject")
     public ResponseEntity<?> addProject(@RequestBody Map<String,String> payload)
     {
@@ -40,6 +42,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/updateProject")
     public ResponseEntity<?> updateProject(@RequestBody Map<String,String> payload)
     {
@@ -51,6 +54,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/removeProject")
     public ResponseEntity<?> removeProject(@RequestParam Map<String,String> param)
     {
@@ -62,6 +66,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/getAllProject")
     public ResponseEntity<?> getAllProject()
     {
@@ -79,6 +84,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/getFreeEmployee")
     public ResponseEntity<?> getFreeEmployee(@RequestParam Map<String,String> param)
     {
@@ -90,6 +96,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/addUserToProject")
     public ResponseEntity<?> addUserToProject(@RequestBody Map<String,Object> payload)
     {
@@ -101,6 +108,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/removeUserFromProject")
     public ResponseEntity<?> removeUserFromProject(@RequestParam Map<String,String> param)
     {
@@ -113,6 +121,7 @@ public class ManagerController {
     }
 
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/addTaskToProject")
     public ResponseEntity<?> addTaskToProject(@RequestBody Map<String,String> payload)
     {
@@ -124,6 +133,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @GetMapping("/removeTaskFromProject")
     public ResponseEntity<?> removeTaskFromProject(@RequestParam Map<String,String> param)
     {
@@ -135,6 +145,7 @@ public class ManagerController {
         }
     }
 
+    @PreAuthorize("hasAuthority('MANAGER')")
     @PostMapping("/updateEffortTable")
     public ResponseEntity<?> updateEffortTable(@RequestBody Map<String,String> payload)
     {

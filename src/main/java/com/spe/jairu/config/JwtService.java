@@ -1,5 +1,7 @@
 package com.spe.jairu.config;
 
+import com.spe.jairu.bean.Role;
+import com.spe.jairu.service.role.RoleService;
 import com.spe.jairu.utils.Constant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -10,9 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
@@ -26,13 +26,14 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(UserDetails userDetails, List<String> rolesList){
+        return generateToken(new HashMap<>(), userDetails, rolesList);
     }
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, List<String> rolesList){
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
+                .claim("authorities", rolesList)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + Constant.DAY))

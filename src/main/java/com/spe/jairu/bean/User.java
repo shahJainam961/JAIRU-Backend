@@ -25,18 +25,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long userId;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
-    @Column
+    @Column(nullable = false)
     @JsonIgnore
     private String password;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
-    @Column
+    @Column(nullable = false)
     private String phone;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String businessTitle;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLES",
@@ -51,7 +51,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> grantedRoles = new HashSet<>();
         roles.forEach(role->{
-            grantedRoles.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
+            grantedRoles.add(new SimpleGrantedAuthority(role.getName()));
         });
         return grantedRoles;
     }

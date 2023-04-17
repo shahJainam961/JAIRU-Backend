@@ -17,10 +17,10 @@ public class Role {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long roleId;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
 }

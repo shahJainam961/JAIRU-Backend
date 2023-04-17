@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private RoleService roleService;
 
     @Override
-    public LoginUser generateToken(Map<String, String> payload) {
+    public User generateToken(Map<String, String> payload) {
         LoginUser loginUser = new LoginUser();
         loginUser.setUsername(payload.get("username"));
         loginUser.setPassword(payload.get("password"));
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
                 )
         );
 
-        return loginUser;
+        return userRepository.findByUsername(loginUser.getUsername());
     }
 
     public List<User> findAll() {

@@ -18,22 +18,22 @@ public class EffortTable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long effortTableId;
 
-    @Column
+    @Column(nullable = false)
     private Integer requirementAnalysisHours;
 
-    @Column
+    @Column(nullable = false)
     private Integer designingHours;
 
-    @Column
+    @Column(nullable = false)
     private Integer codingHours;
 
-    @Column
+    @Column(nullable = false)
     private Integer testingHours;
 
-    @Column
+    @Column(nullable = false)
     private Integer projectManagementHours;
 
     @OneToOne
-    @JoinColumn(name = "project_id")
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 }

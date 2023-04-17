@@ -18,10 +18,10 @@ public class Project {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long projectId;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String projectName;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)

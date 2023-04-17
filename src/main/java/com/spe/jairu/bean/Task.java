@@ -18,22 +18,22 @@ public class Task {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long taskId;
 
-    @Column
+    @Column(nullable = false)
     private String taskName;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="status_id")
+    @JoinColumn(name="status_id", nullable = false)
     private TaskStatusLu statusLu;
 
     @ManyToOne
-    @JoinColumn(name="project_id")
+    @JoinColumn(name="project_id", nullable = false)
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id", nullable = false)
     private User user;
 }
 
