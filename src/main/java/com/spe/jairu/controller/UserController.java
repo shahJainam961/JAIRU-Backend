@@ -4,6 +4,7 @@ import com.spe.jairu.bean.User;
 import com.spe.jairu.config.JwtService;
 import com.spe.jairu.customModel.AuthToken;
 import com.spe.jairu.customModel.LoginUser;
+import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +41,8 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody Map<String,String> payload){
         try {
-            User user = userService.saveUser(payload);
-            return ResponseEntity.ok(user);
+            UserModel userModel = userService.saveUser(payload);
+            return ResponseEntity.ok(userModel);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

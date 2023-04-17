@@ -1,5 +1,6 @@
 package com.spe.jairu.utils;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -31,6 +32,8 @@ public interface Constant {
         return new BCryptPasswordEncoder();
     }
 
-
+    static ModelMapper getModelMapper(){
+        return new ModelMapper();
+    }
 
 }

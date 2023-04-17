@@ -3,6 +3,7 @@ package com.spe.jairu.service.user;
 import com.spe.jairu.bean.Role;
 import com.spe.jairu.bean.User;
 import com.spe.jairu.customModel.LoginUser;
+import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.repository.UserRepository;
 import com.spe.jairu.service.role.RoleService;
 import com.spe.jairu.utils.Constant;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User saveUser(Map<String, String> payload) {
+    public UserModel saveUser(Map<String, String> payload) {
 
         User user = new User();
         user.setUsername(payload.get("username"));
@@ -76,6 +77,8 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setRoles(roleSet);
-        return userRepository.save(user);
+        user = userRepository.save(user);
+        UserModel userModel = Constant.getModelMapper().map(user, UserModel.class);
+        return userModel;
     }
 }

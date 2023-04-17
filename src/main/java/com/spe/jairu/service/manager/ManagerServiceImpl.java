@@ -1,11 +1,12 @@
 package com.spe.jairu.service.manager;
 
 import com.spe.jairu.bean.*;
+import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.repository.*;
 import com.spe.jairu.service.user.UserService;
+import com.spe.jairu.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.*;
 
@@ -33,10 +34,10 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public List<Project> getAllProject(String username)
     {
-        List<Project> projects = new ArrayList<Project>();
+        List<Project> projects = new ArrayList<>();
         User user = userService.findOne(username);
         projectRepository.getAllProjectByUserId(user.getUserId()).forEach(project -> projects.add(project));
-        return  projects;
+        return projects;
     }
 
     @Override
@@ -72,21 +73,25 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public List<User> getFreeEmployee(Map<String,String> param)
+    public List<UserModel> getFreeEmployee(Map<String,String> param)
     {
-        Long id = Long.parseLong(param.get("projectId"));
-        List<User> freeEmployee = userRepository.getFreeEmployee(id);
-        return freeEmployee;
+        Long projectId = Long.parseLong(param.get("projectId"));
+        List<User> freeEmployees = userRepository.getFreeEmployee(projectId);
+        List<UserModel> userModels = new ArrayList<>();
+        freeEmployees.forEach(freeEmployee->{
+            userModels.add(Constant.getModelMapper().map(freeEmployee, UserModel.class));
+        });
+        return userModels;
     }
 
     @Override
     public Project addUserToProject(Map<String,Object> payload)
     {
-        long projectId = Long.valueOf((Integer)payload.get("projectId"));
+        Long projectId = Long.valueOf((Integer)payload.get("projectId"));
         List<Integer> userIds = (List<Integer>)(payload.get("userId"));
-        Project project = projectRepository.findById(projectId).get();
+        Project project = projectRepository.findByProjectId(projectId);
         Set<User> userSet = project.getUsers();
-        userIds.forEach((id) -> userSet.add((userRepository.findByUserId((long)Long.valueOf(id)))));
+        userIds.forEach((userId) -> userSet.add((userRepository.findByUserId(Long.valueOf(userId)))));
         project.setUsers(userSet);
         Project project1 = projectRepository.save(project);
         return  project1;
@@ -101,7 +106,7 @@ public class ManagerServiceImpl implements ManagerService {
         userSet.remove(user);
         project.setUsers(userSet);
         Project project1 = projectRepository.save(project);
-        return  project1;
+        return project1;
     }
 
 

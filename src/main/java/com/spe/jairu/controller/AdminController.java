@@ -1,6 +1,6 @@
 package com.spe.jairu.controller;
 
-import com.spe.jairu.bean.User;
+import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,29 +17,29 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping(value = "/getManagerData", method = RequestMethod.GET)
+    @GetMapping("/getManagerData")
     public ResponseEntity<?> getAllManager()
     {
         try {
-            List<User> managers = adminService.getAllManager();
+            List<UserModel> managers = adminService.getAllManager();
             return ResponseEntity.ok(managers);
         }catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @RequestMapping(value = "/getEmployeeData", method = RequestMethod.GET)
+    @GetMapping("/getEmployeeData")
     public ResponseEntity<?> getAllEmployee()
     {
         try {
-            List<User> emps = adminService.getAllEmployee();
+            List<UserModel> emps = adminService.getAllEmployee();
             return ResponseEntity.ok(emps);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @RequestMapping(value = "/deleteUser",method = RequestMethod.GET)
+    @GetMapping("/deleteUser")
     public ResponseEntity<?> deleteUser(@RequestParam Map<String,String> param)
     {
         try {
@@ -48,7 +48,5 @@ public class AdminController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-
     }
 }

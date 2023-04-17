@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","project"})
+@JsonIgnoreProperties({"project"})
 public class EffortTable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

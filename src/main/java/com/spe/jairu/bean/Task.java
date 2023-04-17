@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","project"})
+@JsonIgnoreProperties({"project"})
 @Getter
 @Setter
 @AllArgsConstructor

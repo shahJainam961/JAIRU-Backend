@@ -25,12 +25,12 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long userId;
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     @JsonIgnore
     private String password;
-    @Column
+    @Column(unique = true)
     private String email;
     @Column
     private String phone;
