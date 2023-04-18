@@ -17,7 +17,7 @@ public class TaskStatusLu {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long taskStatusLuId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String statusName;
 
     @Column(nullable = false)
