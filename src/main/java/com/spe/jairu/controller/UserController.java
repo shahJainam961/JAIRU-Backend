@@ -53,7 +53,16 @@ public class UserController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
 
+    @PostMapping("/registerAdmin")
+    public ResponseEntity<?> saveUserA(@RequestBody Map<String,String> payload){
+        try {
+            UserModel userModel = userService.saveUser(payload);
+            return ResponseEntity.ok(userModel);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
