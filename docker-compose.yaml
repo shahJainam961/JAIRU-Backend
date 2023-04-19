@@ -3,8 +3,6 @@ services:
   jairu_db:
     image: mysql
     working_dir: /jairu/db
-    volumes:
-      - dbvol:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: murphy
@@ -18,22 +16,10 @@ services:
     image: murphy961/jairu-backend:1.0
     working_dir: /jairu/backend
     stdin_open: true
-    expose:
-      - 9090
-    ports:
-      - 9090:8086
-    volumes:
-      - appvol:/jairu/backend
     networks:
       mcr_net:
         ipv4_address: 172.30.2.9
-    depends_on:
-      - jairu_db
     restart: unless-stopped
-
-volumes:
-  dbvol:
-  appvol:
 
 networks:
   mcr_net:

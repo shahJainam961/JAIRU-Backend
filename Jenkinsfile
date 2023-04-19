@@ -23,10 +23,10 @@ pipeline{
                 sh 'docker push murphy961/jairu-backend:1.0'
             }
         }
-//         stage("Ansible Stage"){
-//             steps{
-//                 sh 'ansible-playbook -i inventory playbook.yaml'
-//             }
-//         }
+        stage("Ansible Stage"){
+            steps{
+                sh 'ansible-playbook -i inventory playbook.yaml'
+            }
+        }
     }
 }
