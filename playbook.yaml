@@ -1,9 +1,11 @@
-
----
-- hosts: all
-  become: true
+- name: Deploying 'JAIRU' Project
+  hosts: prod
+  become: yes
   tasks:
-    - name: getting into docker-compose file directory
-      shell: "cd /var/lib/jenkins/workspace/JAIRU-Backend"
-    - name: docker compose up
-      shell: "docker-compose up -d"
+    - name: stop all the services
+      docker_compose:
+        project_src: "/var/lib/jenkins/workspace/JAIRU-Backend"
+        state: absent
+    - name: start all the services
+      docker_compose:
+        project_src: "/var/lib/jenkins/workspace/JAIRU-Backend"
