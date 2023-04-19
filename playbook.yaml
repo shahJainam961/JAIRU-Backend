@@ -3,5 +3,7 @@
 - hosts: all
   become: true
   tasks:
+    - name: getting into docker-compose file directory
+      shell: "cd /var/lib/jenkins/workspace/JAIRU-Backend"
     - name: docker compose up
       shell: "docker-compose up -d"
