@@ -7,8 +7,8 @@
         ls -a
     - name: stop all the services
       docker_compose:
-        project_src: "/var/lib/jenkins/workspace/JAIRU-Backend"
+        project_src: "/home/murphy"
         state: absent
     - name: start all the services
       docker_compose:
-        project_src: "/var/lib/jenkins/workspace/JAIRU-Backend"
+        project_src: "/home/murphy"
