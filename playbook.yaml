@@ -1,5 +1,5 @@
 - name: Deploying 'JAIRU' Project
-  hosts: prod
+  hosts: all
   become: yes
   tasks:
     - name: stop all the services
