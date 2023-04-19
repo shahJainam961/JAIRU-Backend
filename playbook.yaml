@@ -2,13 +2,16 @@
   hosts: all
   become: yes
   tasks:
-    - name: haha
+    - name: docker compose
       shell:
-        ls -a
-    - name: stop all the services
-      docker_compose:
-        project_src: "/home/murphy"
-        state: absent
-    - name: start all the services
-      docker_compose:
-        project_src: "/home/murphy"
+        docker-compose up -d
+#    - name: haha
+#      shell:
+#        ls -a
+#    - name: stop all the services
+#      docker_compose:
+#        project_src: "/home/murphy"
+#        state: absent
+#    - name: start all the services
+#      docker_compose:
+#        project_src: "/home/murphy"
