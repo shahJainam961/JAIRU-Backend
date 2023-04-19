@@ -8,7 +8,7 @@ pipeline{
         }
         stage("Building Stage"){
             steps{
-                sh 'mvn clean install -Dspring.profiles.active=local'
+                sh 'mvn clean install'
             }
         }
         stage("Testing Stage"){
