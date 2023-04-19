@@ -8,9 +8,9 @@ services:
       MYSQL_USER: murphy
       MYSQL_PASSWORD: Murphy@961
       MYSQL_DATABASE: jairu
-#    networks:
-#      mcr_net:
-#        ipv4_address: 172.30.2.10
+    networks:
+      mcr_net:
+        ipv4_address: 172.30.2.10
 
   jairu_backend:
     image: murphy961/jairu-backend:1.0
@@ -18,13 +18,14 @@ services:
     stdin_open: true
     ports:
       - 8086:8086
-#    networks:
-#      mcr_net:
-#        ipv4_address: 172.30.2.9
 
-#networks:
-#  mcr_net:
-#    ipam:
-#      driver: default
-#      config:
-#        - subnet: 172.30.2.0/24
+    networks:
+      mcr_net:
+        ipv4_address: 172.30.2.9
+
+networks:
+  mcr_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.2.0/24
