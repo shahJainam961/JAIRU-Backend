@@ -16,6 +16,8 @@ services:
     image: murphy961/jairu-backend:1.0
     working_dir: /jairu/backend
     stdin_open: true
+    ports:
+      - 8086:8086
     networks:
       mcr_net:
         ipv4_address: 172.30.2.9
