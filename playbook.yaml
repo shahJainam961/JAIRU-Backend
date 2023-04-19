@@ -3,7 +3,8 @@
   become: yes
   tasks:
     - name: haha
-      shell: 'ls'
+      shell:
+        ls -a
     - name: stop all the services
       docker_compose:
         project_src: "/var/lib/jenkins/workspace/JAIRU-Backend"
