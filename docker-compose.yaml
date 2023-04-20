@@ -29,25 +29,25 @@ services:
 #        ipv4_address: 172.30.3.2
     restart: unless-stopped
 
-#  jairu-frontend:
-#    container_name: jairu-frontend
-#    image: murphy961/jairu-frontend:1.0
-#    working_dir: /jairu/frontend
-#    stdin_open: true
-#    expose:
-#      - 8087
-#    ports:
-#      - 8087:80
-#    depends_on:
-#      - jairu-backend
+  jairu-frontend:
+    container_name: jairu-frontend
+    image: murphy961/jairu-frontend:1.0
+    working_dir: /jairu/frontend
+    stdin_open: true
+    expose:
+      - 8087
+    ports:
+      - 8087:80
+    depends_on:
+      - jairu-backend
 #    networks:
 #      mcr_net:
 #        ipv4_address: 172.30.3.3
-#    restart: unless-stopped
+    restart: unless-stopped
 
-networks:
-  jairu-net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.30.3.0/24
+#networks:
+#  jairu-net:
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.30.3.0/24
