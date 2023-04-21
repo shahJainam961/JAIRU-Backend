@@ -4,12 +4,12 @@
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%F] [%level] %logger{36} %msg%n"/>
         </Console>
-        <File name="FileAppender" fileName="logs/jairu.log" append="true">
+        <File name="FileAppender" fileName="./logs/jairu.log" append="true">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%F] [%level] %logger{36} %msg%n"/>
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="JAIRU" level="INFO">
+        <Logger name="jairu" level="INFO">
             <AppenderRef ref="FileAppender"/>
         </Logger>
         <Root level="info">

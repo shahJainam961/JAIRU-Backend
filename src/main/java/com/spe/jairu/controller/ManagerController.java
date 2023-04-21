@@ -25,7 +25,7 @@ import java.util.Map;
 public class ManagerController {
 
 
-    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
+    private static final Logger logger = LogManager.getLogger("jairu");
     @Autowired
     private ManagerService managerService;
 

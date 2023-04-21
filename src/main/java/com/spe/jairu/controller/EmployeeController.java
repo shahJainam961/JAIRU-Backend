@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
+    private static final Logger logger = LogManager.getLogger("jairu");
 
     @Autowired
     private EmployeeService employeeService;

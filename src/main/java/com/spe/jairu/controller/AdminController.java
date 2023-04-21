@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
+    private static final Logger logger = LogManager.getLogger("jairu");
 
     @Autowired
     AdminService adminService;

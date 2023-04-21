@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/users")
 public class UserController {
 
-    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
+    private static final Logger logger = LogManager.getLogger("jairu");
 
     @Autowired
     private JwtService jwtService;
