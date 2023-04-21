@@ -24,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/manager")
 public class ManagerController {
 
+
+    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
     @Autowired
     private ManagerService managerService;
 
@@ -36,8 +38,10 @@ public class ManagerController {
             String username = userDetails.getUsername();
             Project res = managerService.addProject(payload, username);
             res = managerService.initializeEffortTable(res);
+            logger.info("[ManagerController] - [Add Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Add Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -48,8 +52,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.updateProject(payload);
+            logger.info("[ManagerController] - [Update Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Update Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -60,8 +66,10 @@ public class ManagerController {
     {
         try {
             Map<String ,String> res = managerService.removeProject(param);
+            logger.info("[ManagerController] - [Remove Project]");
             return ResponseEntity.ok(res);
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Remove Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -78,8 +86,10 @@ public class ManagerController {
             projects.forEach(project -> {
                 projectModels.add(Constant.getModelMapper().map(project, ProjectModel.class));
             });
+            logger.info("[ManagerController] - [Get All Project By Manager]");
             return ResponseEntity.ok(projectModels);
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Get All Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -90,8 +100,10 @@ public class ManagerController {
     {
         try {
             List<UserModel> freeEmployee = managerService.getFreeEmployee(param);
+            logger.info("[ManagerController] - [Get Free Employee]");
             return ResponseEntity.ok(freeEmployee);
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Get Free Employee]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -102,8 +114,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.addUserToProject(payload);
+            logger.info("[ManagerController] - [Add User TO Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Add User TO Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -114,8 +128,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.removeUserFromProject(param);
+            logger.info("[ManagerController] - [Remove User From Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Remove User From Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -127,8 +143,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.addTaskToProject(payload);
+            logger.info("[ManagerController] - [Add Task To Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Add Task To Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -139,8 +157,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.removeTaskFromProject(param);
+            logger.info("[ManagerController] - [Remove Task From Project]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Remove Task From Project]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -151,8 +171,10 @@ public class ManagerController {
     {
         try {
             Project res = managerService.updateEffortTable(payload);
+            logger.info("[ManagerController] - [Update Effort Table]");
             return ResponseEntity.ok(Constant.getModelMapper().map(res, ProjectModel.class));
         }catch (Exception e){
+            logger.error("[ManagerController] - [Error in Update Effort Table]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

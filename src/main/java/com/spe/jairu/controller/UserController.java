@@ -6,6 +6,8 @@ import com.spe.jairu.customModel.AuthToken;
 import com.spe.jairu.customModel.LoginUser;
 import com.spe.jairu.customModel.UserModel;
 import com.spe.jairu.service.user.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +23,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
 
     @Autowired
     private JwtService jwtService;
@@ -38,8 +42,10 @@ public class UserController {
                 rolesList.add(role.getName());
             });
             final String token = jwtService.generateToken(userDetails, rolesList);
+            logger.info("[UserController] - [Generate Token]");
             return ResponseEntity.ok(new AuthToken(token));
         }catch (Exception e){
+            logger.error("[UserController] - [Error in Generate Token]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -49,8 +55,10 @@ public class UserController {
     public ResponseEntity<?> saveUser(@RequestBody Map<String,String> payload){
         try {
             UserModel userModel = userService.saveUser(payload);
+            logger.info("[UserController] - [Save User]");
             return ResponseEntity.ok(userModel);
         }catch (Exception e){
+            logger.error("[UserController] - [Error in Save User]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -72,8 +80,10 @@ public class UserController {
         try {
             Map<String, String> res = new HashMap<>();
             res.put("msg", "Only Manager Can Read This");
+            logger.info("[UserController] - [Manager Ping]");
             return ResponseEntity.ok(res);
         }catch (Exception e){
+            logger.error("[UserController] - [Error in Manager Ping]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -84,8 +94,10 @@ public class UserController {
         try {
             Map<String, String> res = new HashMap<>();
             res.put("msg", "Only admin Can Read This");
+            logger.info("[UserController] - [Admin Ping]");
             return ResponseEntity.ok(res);
         }catch (Exception e){
+            logger.error("[UserController] - [Error in Admin Ping]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -96,8 +108,10 @@ public class UserController {
         try {
             Map<String, String> res = new HashMap<>();
             res.put("msg", "Only Employee Can Read This");
+            logger.info("[UserController] - [Employee Pin]");
             return ResponseEntity.ok(res);
         }catch (Exception e){
+            logger.error("[UserController] - [Error in Employee Pin]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

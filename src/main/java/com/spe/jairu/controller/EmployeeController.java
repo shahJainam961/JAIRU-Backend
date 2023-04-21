@@ -24,6 +24,7 @@ import java.util.Map;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+    private static final Logger logger = LogManager.getLogger("ProjectManagementSystem");
 
     @Autowired
     private EmployeeService employeeService;
@@ -40,8 +41,10 @@ public class EmployeeController {
             projects.forEach(project -> {
                 projectModels.add(Constant.getModelMapper().map(project, ProjectModel.class));
             });
+            logger.error("[EmployeeController] - [Get All Projects by Employee]");
             return ResponseEntity.ok(projectModels);
         }catch (Exception e){
+            logger.error("[EmployeeController] - [Error in Get All Projects]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -58,8 +61,10 @@ public class EmployeeController {
             res.forEach(task -> {
                 taskModels.add(Constant.getModelMapper().map(task, TaskModel.class));
             });
+            logger.info("[EmployeeController] - [Get All Task By Project By User]");
             return ResponseEntity.ok(taskModels);
         }catch (Exception e){
+            logger.error("[EmployeeController] - [Error in Get All Task By Project By User]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -76,8 +81,10 @@ public class EmployeeController {
             res.forEach(task -> {
                 taskModels.add(Constant.getModelMapper().map(task, TaskModel.class));
             });
+            logger.info("[EmployeeController] - [Update Task Status]");
             return ResponseEntity.ok(taskModels);
         }catch (Exception e){
+            logger.error("[EmployeeController] - [Error in Update Task Status]");
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
