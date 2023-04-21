@@ -8,7 +8,7 @@ pipeline{
         }
         stage("Building Stage"){
             steps{
-                sh 'mvn clean install'
+                sh 'mvn clean compile package'
             }
         }
         stage("Testing Stage"){
@@ -16,16 +16,19 @@ pipeline{
                 sh 'mvn test'
             }
         }
-        stage("build image"){
+        stage("Docker Login"){
             steps{
                 sh 'docker login -u "murphy961" -p "Dockerhub@961"'
-                sh 'docker build -t murphy961/jairu-backend:1.0 .'
-                sh 'docker push murphy961/jairu-backend:1.0'
             }
         }
-        stage("Ansible Stage"){
+        stage("Building Docker Image"){
             steps{
-                sh 'echo jainamshah'
+                sh 'docker build -t murphy961/jairu-backend:1.0 .'
+            }
+        }
+        stage("Pushing Docker Image on DockerHub"){
+            steps{
+                sh ''docker push murphy961/jairu-backend:1.0'
             }
         }
     }
