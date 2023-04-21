@@ -25,7 +25,7 @@ pipeline{
         }
         stage("Ansible Stage"){
             steps{
-                sh 'echo jainam'
+                sh 'echo jainamshah'
             }
         }
     }
