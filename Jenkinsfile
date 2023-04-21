@@ -28,7 +28,7 @@ pipeline{
         }
         stage("Pushing Docker Image on DockerHub"){
             steps{
-                sh ''docker push murphy961/jairu-backend:1.0'
+                sh 'docker push murphy961/jairu-backend:1.0'
             }
         }
     }
