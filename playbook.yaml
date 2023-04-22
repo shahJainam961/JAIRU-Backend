@@ -19,6 +19,7 @@
     - name: Remove docker-compose file if any
       shell:
         rm docker-compose.yaml||rm docker-compose.yml||ls
+
     - name: Copy Docker Compose file to VM
       copy:
         src: /var/lib/jenkins/workspace/JAIRU-Frontend/docker-compose.yaml
@@ -28,6 +29,14 @@
       become_user: root
       docker_compose:
         state: absent
+
+    - name: Remove images of frontend if any
+      shell:
+        docker rmi murphy961/jairu-frontend:1.0||ls
+
+    - name: Remove images of backend if any
+      shell:
+        docker rmi murphy961/jairu-backend:1.0||ls
 
     - name: Run Docker Compose on VM
       become_user: root
