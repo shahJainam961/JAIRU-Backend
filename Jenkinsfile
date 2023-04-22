@@ -8,6 +8,7 @@ pipeline{
         }
         stage("Building Stage"){
             steps{
+                sh 'export PATH=$PATH:/opt/maven/bin'
                 sh 'mvn clean compile package'
             }
         }
