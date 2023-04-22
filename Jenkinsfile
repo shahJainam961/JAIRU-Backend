@@ -13,7 +13,7 @@ pipeline{
         }
         stage("Testing Stage"){
             steps{
-                sh 'mvn test'
+                sh '/opt/maven/bin/mvn test'
             }
         }
         stage("Docker Login"){
