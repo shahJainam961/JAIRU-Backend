@@ -1,4 +1,10 @@
 pipeline{
+    environment{
+            DOCKERHUB = credentials('MURPHY_DOCKER_HUB_CREDS')
+            MYSQL_DATABASE = credentials('MYSQL_DATABASE')
+            MYSQL = credentials('MYSQL')
+            BACKEND_INTERNAL_PORT = credentials('BACKEND_INTERNAL_PORT')
+    }
     agent any
     stages{
         stage("Git Cloning Stage"){
@@ -8,17 +14,19 @@ pipeline{
         }
         stage("Building Stage"){
             steps{
-                sh '/opt/maven/bin/mvn clean compile package'
+                sh '/opt/maven/bin/mvn clean -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR --DMYSQL_PSW=$MYSQL_PSW'
+                sh '/opt/maven/bin/mvn compile -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR --DMYSQL_PSW=$MYSQL_PSW'
+                sh '/opt/maven/bin/mvn package -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR --DMYSQL_PSW=$MYSQL_PSW'
             }
         }
         stage("Testing Stage"){
             steps{
-                sh '/opt/maven/bin/mvn test'
+                sh '/opt/maven/bin/mvn test -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR --DMYSQL_PSW=$MYSQL_PSW'
             }
         }
         stage("Docker Login"){
             steps{
-                sh 'docker login -u "murphy961" -p "Dockerhub@961"'
+                sh 'docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PSW'
             }
         }
         stage("Building Docker Image"){
