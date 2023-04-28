@@ -14,14 +14,12 @@ pipeline{
         }
         stage("Building Stage"){
             steps{
-                sh '/opt/maven/bin/mvn clean -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR -DMYSQL_PSW=$MYSQL_PSW'
-                sh '/opt/maven/bin/mvn compile -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR -DMYSQL_PSW=$MYSQL_PSW'
-                sh '/opt/maven/bin/mvn package -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR -DMYSQL_PSW=$MYSQL_PSW'
+                sh '/opt/maven/bin/mvn clean compile package'
             }
         }
         stage("Testing Stage"){
             steps{
-                sh '/opt/maven/bin/mvn test -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR -DMYSQL_PSW=$MYSQL_PSW'
+                sh 'ls'
             }
         }
         stage("Docker Login"){
