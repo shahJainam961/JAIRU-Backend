@@ -13,13 +13,13 @@ public class JairuApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JairuApplication.class, args);
-//        AddAdminImpl addAdmin = new AddAdminImpl();
-//        try{
-//            addAdmin.postToApi();
-//        }
-//        catch(Exception e){
-//            System.out.println("e = " + e);
-//        }
+        AddAdminImpl addAdmin = new AddAdminImpl();
+        try{
+            addAdmin.postToApi();
+        }
+        catch(Exception e){
+            System.out.println("e = " + e);
+        }
     }
 
 }
