@@ -50,7 +50,6 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody Map<String,String> payload){
         try {

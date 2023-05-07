@@ -22,7 +22,6 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getManagerData")
     public ResponseEntity<?> getAllManager()
     {
@@ -36,7 +35,6 @@ public class AdminController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getEmployeeData")
     public ResponseEntity<?> getAllEmployee()
     {
@@ -50,7 +48,6 @@ public class AdminController {
         }
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deleteUser")
     public ResponseEntity<?> deleteUser(@RequestParam Map<String,String> param)
     {

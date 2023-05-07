@@ -21,7 +21,7 @@ pipeline{
         }
         stage("Testing Stage"){
             steps{
-                sh 'ls'
+                sh 'mvn test -DMYSQL_DATABASE=$MYSQL_DATABASE -DBACKEND_INTERNAL_PORT=$BACKEND_INTERNAL_PORT -DMYSQL_USR=$MYSQL_USR -DMYSQL_PSW=$MYSQL_PSW'
             }
         }
         stage("Docker Login"){
