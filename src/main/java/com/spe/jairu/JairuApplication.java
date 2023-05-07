@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class JairuApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(JairuApplication.class, args);
         AddAdminImpl addAdmin = new AddAdminImpl();
@@ -21,5 +20,4 @@ public class JairuApplication {
             System.out.println("e = " + e);
         }
     }
-
 }
