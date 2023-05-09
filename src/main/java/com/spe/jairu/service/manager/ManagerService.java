@@ -19,4 +19,6 @@ public interface ManagerService {
     Project updateEffortTable(Map<String,String> payload);
     Project initializeEffortTable(Project project);
 
+
+
 }
