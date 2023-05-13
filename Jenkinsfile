@@ -39,5 +39,6 @@ pipeline{
                 sh 'docker push murphy961/jairu-backend:1.0'
             }
         }
+
     }
 }
